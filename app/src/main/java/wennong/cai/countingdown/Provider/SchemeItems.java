@@ -22,15 +22,17 @@ public class SchemeItems {
         public static final String ID = "_id";
         public static final String ITEM_TITLE = "item_title";
         public static final String ITEM_DESCRIPTION = "item_description";
+        public static final String ITEM_DUE = "item_due";
 
 
         public static final String[] PROJECTION = new String[]{
                 Item.ID,
                 Item.ITEM_TITLE,
-                ITEM_DESCRIPTION
+                Item.ITEM_DESCRIPTION,
+                Item.ITEM_DUE
         };
 
-        private Item(){}
+        private Item(){}    // prevent initiating this Scheme Object by accident.
 
     }
 }
