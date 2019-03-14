@@ -15,7 +15,9 @@ public class ItemsDbHelper extends SQLiteOpenHelper {
                     SchemeItems.Item.ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                     SchemeItems.Item.ITEM_TITLE + " TEXT, " +
                     SchemeItems.Item.ITEM_DESCRIPTION + " TEXT, " +
-                    SchemeItems.Item.ITEM_DUE + " Date); ";
+                    SchemeItems.Item.ITEM_YEAR + " INTERGER, " +
+                    SchemeItems.Item.ITEM_MONTH + " INTERGER, " +
+                    SchemeItems.Item.ITEM_DAY + " INTERGER)";
 
     public ItemsDbHelper(Context context){
         super(context, DATABASE_NAME, null, DB_VERSION);

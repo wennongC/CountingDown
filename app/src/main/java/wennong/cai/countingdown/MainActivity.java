@@ -8,24 +8,27 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-    RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
-    RecyclerView.Adapter adapter;
     BottomNavigationView navigation;
+    FrameLayout frame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        frame = (FrameLayout) findViewById(R.id.mainCanvas);
+        HomeFragment hf = new HomeFragment();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.mainCanvas, hf, "homeFragment")
+                .commit();
     }
 
     @Override
@@ -61,25 +64,16 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void LoadingHome(){
-        mTextMessage.setText(R.string.title_home); // Just a placeholder for now
-
-
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-        layoutManager = new LinearLayoutManager(this);  //A RecyclerView.LayoutManager implementation which provides similar functionality to ListView.
-        recyclerView.setLayoutManager(layoutManager);   // Also StaggeredGridLayoutManager and GridLayoutManager or a custom Layout manager
-
-        adapter = new RecyclerAdapter();
-        recyclerView.setAdapter(adapter);
+        // Do something
+        HomeFragment hf = new HomeFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainCanvas, hf, "homeFragment").commit();
     }
 
     private void LoadingRecord(){
-        mTextMessage.setText(R.string.title_record);
         // Waiting to be coded
     }
 
     private void LoadingSetting(){
-        mTextMessage.setText(R.string.title_setting);
         // Waiting to be coded
     }
 

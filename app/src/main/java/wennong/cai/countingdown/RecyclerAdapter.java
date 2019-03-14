@@ -6,11 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import wennong.cai.countingdown.Provider.ItemValues;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private ItemValues[] items = {};
+    private ArrayList<ItemValues> items;
+
+    RecyclerAdapter(ArrayList<ItemValues> items){
+        super();
+        this.items = items;
+    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -21,7 +28,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-        viewHolder.itemTitle.setText(items[position].getItemTitle());  // Need decide if the item already overdue
+        viewHolder.itemTitle.setText(items.get(position).getItemTitle());  // Need decide if the item already overdue
 
         viewHolder.itemDayLeft.setText("......"); //  Need calculation here !!!!!!!!!!!!!
 
@@ -35,9 +42,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return items.length;
+        return items.size();
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public View itemView;

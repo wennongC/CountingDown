@@ -6,15 +6,19 @@ public class ItemValues {
     private int id;
     private String itemTitle;
     private String itemDescription;
-    private Date itemDue;
+    private int itemYear;
+    private int itemMonth;
+    private int itemDay;
 
     public ItemValues(){}
 
-    public ItemValues(int id, String itemTitle, String itemDescription, Date itemDue){
+    public ItemValues(int id, String itemTitle, String itemDescription, int itemYear, int itemMonth, int itemDay){
         this.id = id;
         this.itemTitle = itemTitle;
         this.itemDescription = itemDescription;
-        this.itemDue = itemDue;
+        this.itemYear = itemYear;
+        this.itemMonth = itemMonth;
+        this.itemDay = itemDay;
     }
 
     public int getId() {
@@ -29,8 +33,16 @@ public class ItemValues {
         return itemDescription;
     }
 
-    public Date getItemDue() {
-        return itemDue;
+    public int getItemYear() {
+        return itemYear;
+    }
+
+    public int getItemMonth() {
+        return itemMonth;
+    }
+
+    public int getItemDay() {
+        return itemDay;
     }
 
     public void setId(int id) {
@@ -45,9 +57,15 @@ public class ItemValues {
         this.itemDescription = itemDescription;
     }
 
-    public void setItemDue(Date itemDue) {
-        this.itemDue = itemDue;
+    public void setItemYear(int itemYear) {
+        this.itemYear = itemYear;
     }
 
+    public void setItemMonth(int itemMonth) {
+        this.itemMonth = itemMonth;
+    }
 
+    public void setItemDay(int itemDay) {
+        this.itemDay = itemDay;
+    }
 }
