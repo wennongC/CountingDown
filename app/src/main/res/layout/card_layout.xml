@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?selectableItemBackground"
-    card_view:cardBackgroundColor="@android:color/holo_blue_dark"
+    card_view:cardBackgroundColor="@android:color/darker_gray"
     card_view:cardCornerRadius="12dp"
     card_view:cardElevation="3dp"
     card_view:contentPadding="4dp">
@@ -16,13 +16,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="8dp">
             <TextView
                 android:id="@+id/item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:textSize="35sp"
+                android:textSize="25sp"
                 android:layout_weight="2"
                 />
 
@@ -30,7 +30,7 @@
                 android:id="@+id/item_day_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="35sp"
+                android:textSize="20sp"
                 android:layout_weight="1"
                 />
         </LinearLayout>

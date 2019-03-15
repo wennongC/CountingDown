@@ -13,11 +13,11 @@ public class ItemsDbHelper extends SQLiteOpenHelper {
             "CREATE TABLE " +
                     SchemeItems.Item.TABLE_NAME + " (" +
                     SchemeItems.Item.ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-                    SchemeItems.Item.ITEM_TITLE + " TEXT, " +
+                    SchemeItems.Item.ITEM_TITLE + " TEXT NOT NULL, " +
                     SchemeItems.Item.ITEM_DESCRIPTION + " TEXT, " +
-                    SchemeItems.Item.ITEM_YEAR + " INTERGER, " +
-                    SchemeItems.Item.ITEM_MONTH + " INTERGER, " +
-                    SchemeItems.Item.ITEM_DAY + " INTERGER)";
+                    SchemeItems.Item.ITEM_YEAR + " INTERGER NOT NULL, " +
+                    SchemeItems.Item.ITEM_MONTH + " INTERGER NOT NULL, " +
+                    SchemeItems.Item.ITEM_DAY + " INTERGER NOT NULL)";
 
     public ItemsDbHelper(Context context){
         super(context, DATABASE_NAME, null, DB_VERSION);

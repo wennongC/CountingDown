@@ -1,6 +1,7 @@
 package wennong.cai.countingdown;
 
 import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -26,6 +27,7 @@ public class HomeFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         resolver = getActivity().getApplicationContext().getContentResolver();
+
     }
 
     @Override
