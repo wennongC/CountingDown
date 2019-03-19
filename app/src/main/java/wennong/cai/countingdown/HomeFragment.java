@@ -21,13 +21,11 @@ public class HomeFragment extends Fragment{
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
-    private ArrayList<ItemValues> items;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         resolver = getActivity().getApplicationContext().getContentResolver();
-
     }
 
     @Override
@@ -38,15 +36,14 @@ public class HomeFragment extends Fragment{
 
         layoutManager = new LinearLayoutManager(getContext());  //A RecyclerView.LayoutManager implementation which provides similar functionality to ListView.
         recyclerView.setLayoutManager(layoutManager);   // Also StaggeredGridLayoutManager and GridLayoutManager or a custom Layout manager
-        getData();
-        adapter = new RecyclerAdapter(items);
+        adapter = new RecyclerAdapter(getData(), getActivity());
         recyclerView.setAdapter(adapter);
         return view;
     }
 
-    public void getData(){
+    public ArrayList<ItemValues> getData(){
             Cursor cursor = resolver.query(SchemeItems.Item.CONTENT_URI, SchemeItems.Item.PROJECTION, null, null);
-            items = new ArrayList<>();
+            ArrayList<ItemValues> items = new ArrayList<>();
             int i = 0;
             if (cursor.moveToFirst()) {
                 do {
@@ -62,7 +59,7 @@ public class HomeFragment extends Fragment{
                     // do what ever things left
                 } while (cursor.moveToNext());
             }
-
             cursor.close();
+            return items;
     }
 }

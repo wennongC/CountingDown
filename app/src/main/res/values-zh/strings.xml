@@ -2,6 +2,19 @@
 <resources>
     <string name="app_name">倒计时App -- By 小C</string>
     <string name="title_home">首页</string>
-    <string name="title_record">记录</string>
+    <string name="title_record">新建计划</string>
     <string name="title_setting">设置</string>
+    <string name="task_title">计划名称</string>
+    <string name="task_desc">内容</string>
+    <string name="task_due">截止日期</string>
+    <string name="addTask">添加</string>
+    <string name="cancel">取消</string>
+    <string name="selectDate">选择日期</string>
+    <string name="no_title_warning">请输入计划名称！</string>
+    <string name="task_desc_input">请在此输入计划内容</string>
+    <string name="past_string_1">已经</string>
+    <string name="past_string_2">天</string>
+    <string name="left_string_1">还有</string>
+    <string name="left_string_2">天</string>
+    <string name="today_string">就是今天</string>
 </resources>

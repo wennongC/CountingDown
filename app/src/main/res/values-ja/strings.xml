@@ -2,6 +2,19 @@
 <resources>
     <string name="app_name">カウントダウン -- By 小C</string>
     <string name="title_home">ホーム</string>
-    <string name="title_record">記録</string>
+    <string name="title_record">新規計画</string>
     <string name="title_setting">設定</string>
+    <string name="task_title">計画名</string>
+    <string name="task_desc">内容</string>
+    <string name="task_due">締切日</string>
+    <string name="addTask">登録</string>
+    <string name="cancel">キャンセル</string>
+    <string name="selectDate">期日を選ぶ</string>
+    <string name="no_title_warning">計画名をご入力ください！</string>
+    <string name="task_desc_input">ここに計画内容をご入力してください</string>
+    <string name="past_string_1">もう</string>
+    <string name="past_string_2">日</string>
+    <string name="left_string_1">あと</string>
+    <string name="left_string_2">日</string>
+    <string name="today_string">今日です</string>
 </resources>

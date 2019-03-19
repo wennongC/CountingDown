@@ -32,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        navigation.setSelectedItemId(R.id.navigation_home);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.navigation, menu);
         return true;
@@ -70,11 +76,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void LoadingRecord(){
-        // Waiting to be coded
+        RecordFragment rf = new RecordFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainCanvas, rf, "homeFragment").commit();
     }
 
     private void LoadingSetting(){
         // Waiting to be coded
+    }
+
+    public BottomNavigationView getNavigation(){
+        return navigation;
     }
 
 }

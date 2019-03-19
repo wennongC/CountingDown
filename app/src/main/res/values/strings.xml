@@ -1,6 +1,20 @@
 <resources>
     <string name="app_name">CountingDown -- By Wennong</string>
     <string name="title_home">Home</string>
-    <string name="title_record">Record</string>
+    <string name="title_record">New Task</string>
     <string name="title_setting">Setting</string>
+    <string name="task_title">Task Title</string>
+    <string name="task_desc">Description</string>
+    <string name="task_due">Due Date</string>
+    <string name="addTask">Add Task</string>
+    <string name="cancel">Cancel</string>
+    <string name="selectDate">Select Date</string>
+    <string name="no_title_warning">Please Enter TItle!</string>
+    <string name="task_desc_input">Enter the task detail here</string>
+    <string name="past_string_2">days past</string>
+    <string name="left_string_1">" "</string>
+    <string name="past_string_1">" "</string>
+    <string name="left_string_2">days left</string>
+    <string name="today_string">is today</string>
+
 </resources>

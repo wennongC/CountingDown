@@ -1,6 +1,7 @@
 package wennong.cai.countingdown;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -15,16 +16,19 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import wennong.cai.countingdown.Provider.ItemValues;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private ArrayList<ItemValues> items;
+    private Resources resources;
 
-    RecyclerAdapter(ArrayList<ItemValues> items){
+    RecyclerAdapter(ArrayList<ItemValues> items, Context context){
         super();
         this.items = items;
+        resources = context.getResources();
     }
 
     @Override
@@ -45,15 +49,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         long leftDays = calculateDayLeft(year,month,day);
         String dueString = "";
         if (leftDays > 0){
-            dueString = String.valueOf(leftDays) + "days left";
+            dueString = resources.getString(R.string.left_string_1) + String.valueOf(leftDays) + resources.getString(R.string.left_string_2);
             viewHolder.cardView.setCardBackgroundColor(0xff7bed9f);
             // viewHolder.cardView.setCardBackgroundColor(Color.argb(1, 123, 237, 159));
         } else if (leftDays < 0) {
-            dueString = String.valueOf(-leftDays) + "days past";
+            dueString = resources.getString(R.string.past_string_1) + String.valueOf(-leftDays) + resources.getString(R.string.past_string_2);
             viewHolder.cardView.setCardBackgroundColor(0xffa4b0be);
             // viewHolder.cardView.setCardBackgroundColor(Color.argb(1, 164, 176, 190));
         } else {
-            dueString = "is Today!";
+            dueString = resources.getString(R.string.today_string);
             viewHolder.cardView.setCardBackgroundColor(0xffff6b81);
             // viewHolder.cardView.setCardBackgroundColor(Color.argb(1, 255, 107, 129));
         }
