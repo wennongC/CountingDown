@@ -99,10 +99,10 @@ public class RecordFragment extends Fragment {
 
         DatePickerDialog dialog = new DatePickerDialog(
                 getContext(),
-                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                R.style.Theme_AppCompat_Light_Dialog,
                 dateSetListener,
                 year, month - 1, dayOfMonth);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         dialog.show();
     }
 

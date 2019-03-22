@@ -16,5 +16,6 @@
     <string name="past_string_1">" "</string>
     <string name="left_string_2">days left</string>
     <string name="today_string">is today</string>
+    <string name="editTask">Edit</string>
 
 </resources>

@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment{
         return view;
     }
 
-    public ArrayList<ItemValues> getData(){
+    private ArrayList<ItemValues> getData(){
             Cursor cursor = resolver.query(SchemeItems.Item.CONTENT_URI, SchemeItems.Item.PROJECTION, null, null);
             ArrayList<ItemValues> items = new ArrayList<>();
             int i = 0;

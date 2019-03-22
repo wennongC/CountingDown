@@ -17,4 +17,5 @@
     <string name="left_string_1">还有</string>
     <string name="left_string_2">天</string>
     <string name="today_string">就是今天</string>
+    <string name="editTask">编辑</string>
 </resources>

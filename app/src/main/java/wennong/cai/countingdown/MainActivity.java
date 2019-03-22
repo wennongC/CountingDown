@@ -1,5 +1,6 @@
 package wennong.cai.countingdown;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -73,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         // Do something
         HomeFragment hf = new HomeFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.mainCanvas, hf, "homeFragment").commit();
+        hideKeyboard();
     }
 
     private void LoadingRecord(){
@@ -82,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void LoadingSetting(){
         // Waiting to be coded
+    }
+
+    private void hideKeyboard(){
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     public BottomNavigationView getNavigation(){
