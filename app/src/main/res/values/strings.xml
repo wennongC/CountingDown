@@ -17,5 +17,7 @@
     <string name="left_string_2">days left</string>
     <string name="today_string">is today</string>
     <string name="editTask">Edit</string>
+    <string name="no_desc">There is no description for this task</string>
+    <string name="updateTask">Update</string>
 
 </resources>

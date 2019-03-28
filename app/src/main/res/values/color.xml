@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cancel_color_gray">#A4B0BE</color>
+    <color name="color_transparent">#00000000</color>
+    <color name="update_color_yellow">#ECCC68</color>
+    <color name="insert_color_green">#2ED573</color>
+</resources>

@@ -44,7 +44,6 @@ public class HomeFragment extends Fragment{
     private ArrayList<ItemValues> getData(){
             Cursor cursor = resolver.query(SchemeItems.Item.CONTENT_URI, SchemeItems.Item.PROJECTION, null, null);
             ArrayList<ItemValues> items = new ArrayList<>();
-            int i = 0;
             if (cursor.moveToFirst()) {
                 do {
                     items.add(new ItemValues(
@@ -55,8 +54,6 @@ public class HomeFragment extends Fragment{
                             cursor.getInt(cursor.getColumnIndex(SchemeItems.Item.ITEM_MONTH)),
                             cursor.getInt(cursor.getColumnIndex(SchemeItems.Item.ITEM_DAY))
                     ));
-                    i++;
-                    // do what ever things left
                 } while (cursor.moveToNext());
             }
             cursor.close();
