@@ -2,11 +2,14 @@ package wennong.cai.countingdown;
 
 import android.app.DatePickerDialog;
 import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.constraint.solver.widgets.ConstraintAnchor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -16,6 +19,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import wennong.cai.countingdown.Provider.ItemValues;
 import wennong.cai.countingdown.Provider.SchemeItems;
@@ -68,9 +73,27 @@ public class ItemDetailActivity extends AppCompatActivity {
             editButton.setBackground(getDrawable(R.color.update_color_yellow));
             checkEditable();
 
+            String title = titleInput.getText().toString();
+            String desc = descInput.getText().toString();
+            if (title.trim().length() == 0){
+                Toast toast = Toast.makeText(this, R.string.no_title_warning, Toast.LENGTH_LONG);
+                View toastView = toast.getView();
+                toastView.setBackgroundColor(0xf0ff4757);
+                TextView text = (TextView) toastView.findViewById(android.R.id.message);
+                text.setTextColor(0xfff1f2f6);
+                text.setTextSize(20);
+                toast.show();
+                return;
+            }
 
-            // wait to be coded   (Update the record in the database)
-
+            ContentValues cv = new ContentValues();
+            cv.put(SchemeItems.Item.ITEM_TITLE, title);
+            cv.put(SchemeItems.Item.ITEM_DESCRIPTION, desc);
+            cv.put(SchemeItems.Item.ITEM_YEAR, year);
+            cv.put(SchemeItems.Item.ITEM_MONTH, month);
+            cv.put(SchemeItems.Item.ITEM_DAY, dayOfMonth);
+            String[] args = {String.valueOf(id)};
+            resolver.update(SchemeItems.Item.CONTENT_URI, cv, SchemeItems.Item.ID + " = ?", args);
 
         } else {
             editableFlag = true;
@@ -86,16 +109,39 @@ public class ItemDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        // Wait to be coded
-
+        getMenuInflater().inflate(R.menu.item_detail_options, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.delete_button:
+                final AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle(R.string.delete_button)
+                        .setMessage(R.string.delete_alert_message)
+                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                String[] args = {String.valueOf(id)};
+                                resolver.delete(SchemeItems.Item.CONTENT_URI, SchemeItems.Item.ID + " = ?", args);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, null)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .create();
+                dialog.setOnShowListener( new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface arg0) {
+                        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.GRAY);
+                    }
+                });
+                dialog.show();
 
-        // Wait to be coded
+                break;
+            default:
+                break;
+        }
 
         return super.onOptionsItemSelected(item);
     }

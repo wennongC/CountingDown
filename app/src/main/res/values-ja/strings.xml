@@ -18,6 +18,11 @@
     <string name="left_string_2">日</string>
     <string name="today_string">今日です</string>
     <string name="editTask">編集</string>
-    <string name="no_desc">この計画はまだ詳しい内容がありません</string>
+    <string name="no_desc">本計画はまだ詳しい内容がありません</string>
     <string name="updateTask">更新</string>
+    <string name="delete_button">削除</string>
+    <string name="delete_alert_message">本計画を削除してもよろしいですか</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="wait_to_be_implemented">ええと、ここに何を置くのはまだ決まっていません:(</string>
 </resources>

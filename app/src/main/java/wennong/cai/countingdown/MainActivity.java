@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void LoadingSetting(){
-        // Waiting to be coded
+        SettingFragment rf = new SettingFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainCanvas, rf, "settingFragment").commit();
     }
 
     private void hideKeyboard(){
