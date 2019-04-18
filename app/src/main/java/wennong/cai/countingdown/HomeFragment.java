@@ -36,9 +36,13 @@ public class HomeFragment extends Fragment{
 
         layoutManager = new LinearLayoutManager(getContext());  //A RecyclerView.LayoutManager implementation which provides similar functionality to ListView.
         recyclerView.setLayoutManager(layoutManager);   // Also StaggeredGridLayoutManager and GridLayoutManager or a custom Layout manager
+        refreshAdapter();
+        return view;
+    }
+
+    public void refreshAdapter(){
         adapter = new RecyclerAdapter(getData(), getActivity());
         recyclerView.setAdapter(adapter);
-        return view;
     }
 
     private ArrayList<ItemValues> getData(){

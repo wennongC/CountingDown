@@ -7,12 +7,8 @@ import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.constraint.solver.widgets.ConstraintAnchor;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +20,7 @@ import android.widget.Toast;
 
 import wennong.cai.countingdown.Provider.ItemValues;
 import wennong.cai.countingdown.Provider.SchemeItems;
+import wennong.cai.countingdown.utility.UtilityFunctions;
 
 public class ItemDetailActivity extends AppCompatActivity {
 
@@ -117,27 +114,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.delete_button:
-                final AlertDialog dialog = new AlertDialog.Builder(this)
-                        .setTitle(R.string.delete_button)
-                        .setMessage(R.string.delete_alert_message)
-                        .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                String[] args = {String.valueOf(id)};
-                                resolver.delete(SchemeItems.Item.CONTENT_URI, SchemeItems.Item.ID + " = ?", args);
-                                finish();
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel, null)
-                        .setIcon(android.R.drawable.ic_delete)
-                        .create();
-                dialog.setOnShowListener( new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface arg0) {
-                        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.GRAY);
-                    }
-                });
-                dialog.show();
-
+                UtilityFunctions.deleteConfirmationDialog(this, deleteButtonListener);
                 break;
             default:
                 break;
@@ -145,6 +122,14 @@ public class ItemDetailActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private DialogInterface.OnClickListener deleteButtonListener = new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            String[] args = {String.valueOf(id)};
+            resolver.delete(SchemeItems.Item.CONTENT_URI, SchemeItems.Item.ID + " = ?", args);
+            finish();
+        }
+    };
 
     private void checkEditable(){
         if (editableFlag){

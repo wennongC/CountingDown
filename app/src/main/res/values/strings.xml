@@ -24,5 +24,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="wait_to_be_implemented">Emmm...Haven\'t decided yet what content to put here</string>
+    <string name="detail">Detail</string>
 
 </resources>

@@ -2,10 +2,12 @@ package wennong.cai.countingdown;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +24,16 @@ import java.util.Date;
 import java.util.Locale;
 
 import wennong.cai.countingdown.Provider.ItemValues;
+import wennong.cai.countingdown.Provider.SchemeItems;
+import wennong.cai.countingdown.utility.UtilityFunctions;
+
+/*
+
+ This class is the adapter for the RecyclerView.
+ It creates viewHolder for each task record in the SQLite
+    including setting the click listener
+
+*/
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
@@ -51,7 +63,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         int day = task.getItemDay();
 
         viewHolder.itemTitle.setText(task.getItemTitle());
-        long leftDays = calculateDayLeft(year,month,day);
+        long leftDays = task.calculateDayLeft();
         String dueString = "";
         if (leftDays > 0){
             dueString = resources.getString(R.string.left_string_1) + String.valueOf(leftDays) + resources.getString(R.string.left_string_2);
@@ -78,23 +90,54 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 activity.startActivity(intent);
             }
         });
-    }
 
-    private long calculateDayLeft(int year, int month, int day){
-        final Month[] MONTHS = {Month.JANUARY, Month.FEBRUARY, Month.MARCH,
-                Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST,
-                Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER};
+        // OnClickListener, will be used for delete button in Long-click menu.
+        final DialogInterface.OnClickListener deleteButtonListener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                String[] args = {String.valueOf(task.getId())};
+                activity.getContentResolver().delete(SchemeItems.Item.CONTENT_URI, SchemeItems.Item.ID + " = ?", args); // Remove for database
+                items.remove(fPosition);    // Remove for the current RecyclerView
+                notifyItemRemoved(fPosition);
+            }
+        };
 
-        Calendar calendar = Calendar.getInstance();
-        int currentYear = calendar.get(Calendar.YEAR);
-        int currentMonth = calendar.get(Calendar.MONTH);
-        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+        // On Long Click Listener
+        viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                final AlertDialog dialog = new AlertDialog.Builder(activity)
+                        .setTitle(task.getItemTitle())
+                        .setMessage(activity.getString(R.string.task_due) + ": " + task.getDueDateAsString())
+                        .setPositiveButton(R.string.detail, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(activity, ItemDetailActivity.class);
+                                intent.putExtra("id", task.getId());
+                                activity.startActivity(intent);
+                            }
+                        })
+                        .setNeutralButton(R.string.delete_button,  new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                UtilityFunctions.deleteConfirmationDialog(activity, deleteButtonListener);
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, null)
+                        .setIcon(android.R.drawable.btn_star)
+                        .create();
 
-        LocalDate current = LocalDate.of(currentYear, MONTHS[currentMonth], currentDay);
-        LocalDate due = LocalDate.of(year, MONTHS[month - 1], day);
-        long noOfDaysBetween = ChronoUnit.DAYS.between(current, due);
+                dialog.setOnShowListener( new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface arg0) {
+                        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.GRAY);
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(activity.getColor(R.color.dark_green));
+                        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setTextColor(Color.RED);
+                    }
+                });
 
-        return noOfDaysBetween;
+                dialog.show();
+
+                return true;
+            }
+        });
     }
 
     @Override

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">倒计时App -- By 小C</string>
+    <string name="app_name">日期倒计时App -- By 小C</string>
     <string name="title_home">首页</string>
     <string name="title_record">新建计划</string>
     <string name="title_setting">设置</string>
@@ -25,4 +25,5 @@
     <string name="yes">是</string>
     <string name="no">否</string>
     <string name="wait_to_be_implemented">Emmm...其实我还没想好在这里放啥(￣▽￣)\"</string>
+    <string name="detail">详细</string>
 </resources>
