@@ -1,12 +1,10 @@
 package wennong.cai.countingdown;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -15,17 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 import wennong.cai.countingdown.Provider.ItemValues;
 import wennong.cai.countingdown.Provider.SchemeItems;
-import wennong.cai.countingdown.utility.UtilityFunctions;
+import wennong.cai.countingdown.utility.Utilities;
 
 /*
 
@@ -58,24 +50,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         final ItemValues task = items.get(position);
-        int year = task.getItemYear();
-        int month = task.getItemMonth();
-        int day = task.getItemDay();
 
         viewHolder.itemTitle.setText(task.getItemTitle());
         long leftDays = task.calculateDayLeft();
-        String dueString = "";
+        String dueString;
         if (leftDays > 0){
             dueString = resources.getString(R.string.left_string_1) + String.valueOf(leftDays) + resources.getString(R.string.left_string_2);
-            viewHolder.cardView.setCardBackgroundColor(0xff7bed9f);
+            viewHolder.cardView.setCardBackgroundColor(Utilities.CARDVIEW_LEFT_COLOR);
             // viewHolder.cardView.setCardBackgroundColor(Color.argb(1, 123, 237, 159));
         } else if (leftDays < 0) {
             dueString = resources.getString(R.string.past_string_1) + String.valueOf(-leftDays) + resources.getString(R.string.past_string_2);
-            viewHolder.cardView.setCardBackgroundColor(0xffa4b0be);
+            viewHolder.cardView.setCardBackgroundColor(Utilities.CARDVIEW_PAST_COLOR);
             // viewHolder.cardView.setCardBackgroundColor(Color.argb(1, 164, 176, 190));
         } else {
             dueString = resources.getString(R.string.today_string);
-            viewHolder.cardView.setCardBackgroundColor(0xffff6b81);
+            viewHolder.cardView.setCardBackgroundColor(Utilities.CARDVIEW_TODAY_COLOR);
             // viewHolder.cardView.setCardBackgroundColor(Color.argb(1, 255, 107, 129));
         }
         viewHolder.itemDayLeft.setText(dueString);
@@ -117,7 +106,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                         })
                         .setNeutralButton(R.string.delete_button,  new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                UtilityFunctions.deleteConfirmationDialog(activity, deleteButtonListener);
+                                Utilities.deleteConfirmationDialog(activity, deleteButtonListener);
                             }
                         })
                         .setNegativeButton(R.string.cancel, null)

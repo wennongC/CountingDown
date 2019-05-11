@@ -20,7 +20,7 @@ import android.widget.Toast;
 
 import wennong.cai.countingdown.Provider.ItemValues;
 import wennong.cai.countingdown.Provider.SchemeItems;
-import wennong.cai.countingdown.utility.UtilityFunctions;
+import wennong.cai.countingdown.utility.Utilities;
 
 public class ItemDetailActivity extends AppCompatActivity {
 
@@ -114,7 +114,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.delete_button:
-                UtilityFunctions.deleteConfirmationDialog(this, deleteButtonListener);
+                Utilities.deleteConfirmationDialog(this, deleteButtonListener);
                 break;
             default:
                 break;

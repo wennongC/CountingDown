@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/alpha_order"
+        android:title="@string/alpha_order" />
+
+    <item
+        android:id="@+id/due_date_order"
+        android:title="@string/due_date_order" />
+
+    <item
+        android:id="@+id/day_left_order"
+        android:title="@string/due_date_order" />
+</menu>

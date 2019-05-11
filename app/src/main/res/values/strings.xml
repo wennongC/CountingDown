@@ -25,5 +25,8 @@
     <string name="no">No</string>
     <string name="wait_to_be_implemented">Emmm...Haven\'t decided yet what content to put here</string>
     <string name="detail">Detail</string>
+    <string name="alpha_order">by Alphabetic</string>
+    <string name="due_date_order">by Due Date</string>
+    <string name="day_left_order">by Day Left</string>
 
 </resources>

@@ -7,7 +7,19 @@ import android.support.v7.app.AlertDialog;
 
 import wennong.cai.countingdown.R;
 
-public class UtilityFunctions {
+public class Utilities {
+    public static int CARDVIEW_LEFT_COLOR = 0xff7bed9f;
+    public static int CARDVIEW_PAST_COLOR = 0xffa4b0be;
+    public static int CARDVIEW_TODAY_COLOR = 0xffff6b81;
+
+    public static enum OrderBase { Alpha, DueDate, DayLeft }
+    public static OrderBase ItemOrder = OrderBase.DayLeft;
+
+    public static void cardViewColorToDefault(){
+        Utilities.CARDVIEW_LEFT_COLOR = 0xff7bed9f;
+        Utilities.CARDVIEW_PAST_COLOR = 0xffa4b0be;
+        Utilities.CARDVIEW_TODAY_COLOR = 0xffff6b81;
+    }
 
     public static void deleteConfirmationDialog(final Context context, DialogInterface.OnClickListener listener){
         final AlertDialog dialog = new AlertDialog.Builder(context)

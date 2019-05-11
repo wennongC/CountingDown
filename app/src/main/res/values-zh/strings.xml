@@ -26,4 +26,7 @@
     <string name="no">否</string>
     <string name="wait_to_be_implemented">Emmm...其实我还没想好在这里放啥(￣▽￣)\"</string>
     <string name="detail">详细</string>
+    <string name="alpha_order">字母顺序</string>
+    <string name="due_date_order">截止日期顺序</string>
+    <string name="day_left_order">残余天数顺序</string>
 </resources>

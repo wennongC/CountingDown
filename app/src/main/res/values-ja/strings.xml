@@ -26,4 +26,7 @@
     <string name="no">いいえ</string>
     <string name="wait_to_be_implemented">ええと、ここに何を置くのはまだ決まっていません:(</string>
     <string name="detail">詳しいへ</string>
+    <string name="alpha_order">アルファベット順</string>
+    <string name="due_date_order">締切順</string>
+    <string name="day_left_order">残り時間順</string>
 </resources>
