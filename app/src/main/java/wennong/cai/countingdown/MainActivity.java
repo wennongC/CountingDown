@@ -1,18 +1,27 @@
 package wennong.cai.countingdown;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import java.util.Locale;
+
+import wennong.cai.countingdown.utility.ContextWrapper;
+import wennong.cai.countingdown.utility.Utilities;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Setting bottom navigation bar
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        // Setting the default fragment for the MainActivity
         frame = (FrameLayout) findViewById(R.id.mainCanvas);
         HomeFragment hf = new HomeFragment();
         getSupportFragmentManager().beginTransaction()
@@ -111,4 +122,15 @@ public class MainActivity extends AppCompatActivity {
         return navigation;
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        // Setting language
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(newBase);
+        String language_code = sharedPref.getString(Utilities.LANGUAGE_KEY, Locale.getDefault().getDisplayLanguage());
+        System.out.println(language_code);
+
+        Locale newLocale = new Locale(language_code);
+        Context context = ContextWrapper.wrap(newBase, newLocale);
+        super.attachBaseContext(context);
+    }
 }

@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ItemDetailActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"></activity>
 
         <provider
             android:name=".Provider.ItemsProvider"
@@ -22,7 +23,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

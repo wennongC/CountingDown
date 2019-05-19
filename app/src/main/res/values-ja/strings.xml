@@ -24,9 +24,18 @@
     <string name="delete_alert_message">本計画を削除してもよろしいですか</string>
     <string name="yes">はい</string>
     <string name="no">いいえ</string>
-    <string name="wait_to_be_implemented">ええと、ここに何を置くのはまだ決まっていません:(</string>
     <string name="detail">詳しいへ</string>
     <string name="alpha_order">アルファベット順</string>
     <string name="due_date_order">締切順</string>
     <string name="day_left_order">残り時間順</string>
+    <string name="language_setting">アプリ言語</string>
+    <string name="language_setted">アップデート完了しました。セッティングを更新するため、アプリを再起動してください。</string>
+
+
+    <string-array name="language_array_spinner">
+        <item>システムディフォルト</item>
+        <item>日本語</item>
+        <item>中文</item>
+        <item>English</item>
+    </string-array>
 </resources>
