@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView navigation;
     FrameLayout frame;
+    Menu optionsMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,23 +55,53 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.order_select, menu);
+        optionsMenu = menu;
+        resetOrderMenuTitle();
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
         switch (item.getItemId()){
             case R.id.alpha_order:
+                editor.putInt(Utilities.ORDER_KEY, R.id.alpha_order);
                 break;
             case R.id.due_date_order:
+                editor.putInt(Utilities.ORDER_KEY, R.id.due_date_order);
                 break;
             case R.id.day_left_order:
+                editor.putInt(Utilities.ORDER_KEY, R.id.day_left_order);
                 break;
             default:
                 break;
         }
 
+        editor.apply();
+        resetOrderMenuTitle();
+        LoadingHome();
         return true;
+    }
+
+    private void resetOrderMenuTitle() {
+        optionsMenu.findItem(R.id.alpha_order).setTitle(R.string.alpha_order);
+        optionsMenu.findItem(R.id.due_date_order).setTitle(R.string.due_date_order);
+        optionsMenu.findItem(R.id.day_left_order).setTitle(R.string.day_left_order);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        switch (sharedPref.getInt(Utilities.ORDER_KEY, R.id.alpha_order)){
+            case R.id.alpha_order:
+                optionsMenu.findItem(R.id.alpha_order).setTitle("<<< " + getResources().getString(R.string.alpha_order) + " >>>" );
+                break;
+            case R.id.due_date_order:
+                optionsMenu.findItem(R.id.due_date_order).setTitle("<<< " + getResources().getString(R.string.due_date_order) + " >>>" );
+                break;
+            case R.id.day_left_order:
+                optionsMenu.findItem(R.id.day_left_order).setTitle("<<< " + getResources().getString(R.string.day_left_order) + " >>>" );
+                break;
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

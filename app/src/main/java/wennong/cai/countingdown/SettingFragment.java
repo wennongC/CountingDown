@@ -50,6 +50,14 @@ public class SettingFragment extends Fragment implements AdapterView.OnItemSelec
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        // Set default item for the spinner if has.
+        ArrayAdapter myAdap = (ArrayAdapter) spinner.getAdapter();
+        String lang = sharedPref.getString(Utilities.LANGUAGE_KEY, null);
+        if(lang != null) {
+            int spinnerPosition = myAdap.getPosition(transferSharedPreToArrayValue(lang));
+            spinner.setSelection(spinnerPosition);
+        }
+
 
         // Set save button click event
         Button saveButton = (Button)view.findViewById(R.id.saveButton);
@@ -112,5 +120,20 @@ public class SettingFragment extends Fragment implements AdapterView.OnItemSelec
 
     private void restoreSharedPreferences() {
         int get = sharedPref.getInt("key", 0);
+    }
+
+    private String transferSharedPreToArrayValue(String spString) {
+        switch (spString) {
+            case "en":
+                return "English";
+            case "zh":
+                return "中文";
+            case "ja":
+                return "日本語";
+            case "default":
+                return "System Default";
+            default:
+                return "ERROR";
+        }
     }
 }

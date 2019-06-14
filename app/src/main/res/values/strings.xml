@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CountingDown -- By Wennong</string>
+    <string name="app_name">CountingDown -- By 小C</string>
     <string name="title_home">Home</string>
     <string name="title_record">New Task</string>
     <string name="title_setting">Setting</string>
@@ -37,4 +37,6 @@
         <item>中文</item>
         <item>日本語</item>
     </string-array>
+    <string name="save">SAVE</string>
+    <string name="back_default">BACK DEFAULT</string>
 </resources>

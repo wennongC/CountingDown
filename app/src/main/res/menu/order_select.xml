@@ -10,5 +10,5 @@
 
     <item
         android:id="@+id/day_left_order"
-        android:title="@string/due_date_order" />
+        android:title="@string/day_left_order" />
 </menu>

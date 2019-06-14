@@ -38,4 +38,6 @@
         <item>中文</item>
         <item>English</item>
     </string-array>
+    <string name="save">セーブ</string>
+    <string name="back_default">ディフォルト</string>
 </resources>

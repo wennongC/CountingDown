@@ -21,7 +21,7 @@ public class Utilities {
     // The key to Shared Preferences
     public static String preference_file_key = "preference_file_key";
     public static String LANGUAGE_KEY = "language_code";
-
+    public static String ORDER_KEY = "order_key";
 
     // Used to set all card view background setting back to the default
     public static void cardViewColorToDefault(){
