@@ -40,4 +40,5 @@
     </string-array>
     <string name="save">セーブ</string>
     <string name="back_default">ディフォルト</string>
+    <string name="back">戻る</string>
 </resources>

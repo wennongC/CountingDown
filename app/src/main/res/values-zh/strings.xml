@@ -39,4 +39,5 @@
     </string-array>
     <string name="save">保存</string>
     <string name="back_default">恢复默认</string>
+    <string name="back">返回</string>
 </resources>

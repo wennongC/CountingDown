@@ -85,7 +85,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             public void onClick(DialogInterface dialog, int which) {
                 String[] args = {String.valueOf(task.getId())};
                 activity.getContentResolver().delete(SchemeItems.Item.CONTENT_URI, SchemeItems.Item.ID + " = ?", args); // Remove for database
-                items.remove(fPosition);    // Remove for the current RecyclerView
+                if (items.size() > fPosition){
+                    items.remove(fPosition);    // Remove for the current RecyclerView
+                }
                 notifyItemRemoved(fPosition);
             }
         };

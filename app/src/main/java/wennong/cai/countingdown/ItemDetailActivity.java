@@ -3,10 +3,13 @@ package wennong.cai.countingdown;
 import android.app.DatePickerDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,8 +21,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 import wennong.cai.countingdown.Provider.ItemValues;
 import wennong.cai.countingdown.Provider.SchemeItems;
+import wennong.cai.countingdown.utility.ContextWrapper;
 import wennong.cai.countingdown.utility.Utilities;
 
 public class ItemDetailActivity extends AppCompatActivity {
@@ -191,5 +197,17 @@ public class ItemDetailActivity extends AppCompatActivity {
         }
         cursor.close();
         return null;
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        // Setting language
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(newBase);
+        String language_code = sharedPref.getString(Utilities.LANGUAGE_KEY, Locale.getDefault().getDisplayLanguage());
+        System.out.println(language_code);
+
+        Locale newLocale = new Locale(language_code);
+        Context context = ContextWrapper.wrap(newBase, newLocale);
+        super.attachBaseContext(context);
     }
 }
