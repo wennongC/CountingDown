@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import java.util.HashMap;
+
 public class ItemsProvider extends ContentProvider {
     private static final int ITEMS = 100;
     private static final int ITEMS_ID = 200;
@@ -25,6 +27,7 @@ public class ItemsProvider extends ContentProvider {
     }
 
     private ItemsDbHelper mDbHelper;
+    private HashMap<String, String> sItemsProjectionMap = new HashMap<>();
 
     @Override
     public String getType(Uri uri) {
@@ -41,6 +44,7 @@ public class ItemsProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         mDbHelper = new ItemsDbHelper(getContext());
+        setUpProjectionMap();
         // Content Provider created
         return true;
     }
@@ -67,6 +71,10 @@ public class ItemsProvider extends ContentProvider {
         SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
         queryBuilder.setTables(SchemeItems.Item.TABLE_NAME);
         String id;
+
+        // Prevent SQL Injection
+        queryBuilder.setStrict(true);
+        queryBuilder.setProjectionMap(sItemsProjectionMap);
 
         // Match Uri pattern
         int uriType = sUriMatcher.match(uri);
@@ -103,7 +111,8 @@ public class ItemsProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         int uriType = sUriMatcher.match(uri);
-        int updateCount = 0;
+        int updateCount;
+
         switch (uriType) {
             case ITEMS:
                 updateCount = db.update(SchemeItems.Item.TABLE_NAME, values, selection, selectionArgs);
@@ -128,7 +137,7 @@ public class ItemsProvider extends ContentProvider {
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         int uriType = sUriMatcher.match(uri);
-        int deletionCount = 0;
+        int deletionCount;
 
         switch (uriType) {
             case ITEMS:
@@ -148,5 +157,16 @@ public class ItemsProvider extends ContentProvider {
 
         getContext().getContentResolver().notifyChange(uri, null);
         return deletionCount;
+    }
+
+    private void setUpProjectionMap() {
+        // Creates a new projection map instance. The map returns a column name
+        // given a string. The two are usually equal.
+        sItemsProjectionMap.put(SchemeItems.Item.ID, SchemeItems.Item.ID);
+        sItemsProjectionMap.put(SchemeItems.Item.ITEM_TITLE, SchemeItems.Item.ITEM_TITLE);
+        sItemsProjectionMap.put(SchemeItems.Item.ITEM_DESCRIPTION, SchemeItems.Item.ITEM_DESCRIPTION);
+        sItemsProjectionMap.put(SchemeItems.Item.ITEM_YEAR, SchemeItems.Item.ITEM_YEAR);
+        sItemsProjectionMap.put(SchemeItems.Item.ITEM_MONTH, SchemeItems.Item.ITEM_MONTH);
+        sItemsProjectionMap.put(SchemeItems.Item.ITEM_DAY, SchemeItems.Item.ITEM_DAY);
     }
 }

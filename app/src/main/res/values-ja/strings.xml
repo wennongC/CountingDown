@@ -41,4 +41,6 @@
     <string name="save">セーブ</string>
     <string name="back_default">ディフォルト</string>
     <string name="back">戻る</string>
+    <string name="permission_label">データ保護</string>
+    <string name="permission_description">本アプリのデータのアクセスや使用を防ごうとします</string>
 </resources>

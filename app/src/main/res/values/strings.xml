@@ -40,4 +40,6 @@
     <string name="save">SAVE</string>
     <string name="back_default">BACK DEFAULT</string>
     <string name="back">Back</string>
+    <string name="permission_label">Data Protection</string>
+    <string name="permission_description">Prevent 3rd party  read your data</string>
 </resources>

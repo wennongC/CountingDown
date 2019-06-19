@@ -40,4 +40,6 @@
     <string name="save">保存</string>
     <string name="back_default">恢复默认</string>
     <string name="back">返回</string>
+    <string name="permission_label">数据保护</string>
+    <string name="permission_description">防止第三方读取您的数据</string>
 </resources>
