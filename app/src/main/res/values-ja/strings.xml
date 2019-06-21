@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">カウントダウン -- By 小C</string>
+    <string name="app_name">カウントダウン</string>
     <string name="title_home">ホーム</string>
     <string name="title_record">新規計画</string>
     <string name="title_setting">設定</string>
